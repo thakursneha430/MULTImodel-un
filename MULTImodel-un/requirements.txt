@@ -1,0 +1,14 @@
+# PDF Processing
+PyMuPDF
+
+# Image Processing
+Pillow
+
+# Data Validation
+pydantic
+
+# Environment Variables
+python-dotenv
+
+# Testing
+pytest
