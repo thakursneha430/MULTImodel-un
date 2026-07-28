@@ -4,6 +4,10 @@ PyMuPDF
 # Image Processing
 Pillow
 
+# OCR
+paddleocr
+paddlepaddle
+
 # Data Validation
 pydantic
 
