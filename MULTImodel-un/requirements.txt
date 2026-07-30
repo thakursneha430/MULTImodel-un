@@ -1,18 +1,5 @@
-# PDF Processing
 PyMuPDF
-
-# Image Processing
 Pillow
-
-# OCR
-paddleocr
-paddlepaddle
-
-# Data Validation
 pydantic
-
-# Environment Variables
 python-dotenv
-
-# Testing
 pytest
