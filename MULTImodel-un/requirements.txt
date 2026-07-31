@@ -3,3 +3,6 @@ Pillow
 pydantic
 python-dotenv
 pytest
+sentence-transformers
+transformers
+torch
