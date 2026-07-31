@@ -6,3 +6,4 @@ pytest
 sentence-transformers
 transformers
 torch
+chromadb
