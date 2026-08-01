@@ -2,20 +2,12 @@ from src.rag.rag_pipeline import RAGPipeline
 
 rag = RAGPipeline()
 
-question = "What is Machine Learning?"
+question = input("Ask a question: ")
 
-answer = rag.ask(question)
+result = rag.ask(question)
 
-print("=" * 70)
-print("QUESTION")
-print("=" * 70)
-
-print(question)
-
-print()
-
-print("=" * 70)
+print("\n" + "=" * 60)
 print("ANSWER")
-print("=" * 70)
+print("=" * 60)
 
-print(answer)
+print(result["answer"])

@@ -1,54 +1,21 @@
-"""
-Prompt Builder
-
-Builds prompts for the LLM using retrieved context.
-"""
-
-from typing import List, Dict
-
-
 class PromptBuilder:
-    """
-    Creates prompts for Retrieval-Augmented Generation.
-    """
-
-    def build_prompt(
-        self,
-        query: str,
-        retrieved_chunks: List[Dict]
-    ) -> str:
-
-        context = ""
-
-        for chunk in retrieved_chunks:
-            context += chunk["text"]
-            context += "\n\n"
-
+    @staticmethod
+    def build(context: str, question: str) -> str:
         prompt = f"""
 You are an intelligent AI assistant.
 
-Use ONLY the provided context to answer the question.
+Answer the question ONLY using the provided context.
+If the answer is not present in the context, say:
+"I could not find the answer in the provided document."
 
-If the answer is not available in the context,
-reply with:
-
-"I could not find the answer in the provided documents."
-
-======================
-Context
-======================
-
+------------------------
+Context:
 {context}
+------------------------
 
-======================
-Question
-======================
+Question:
+{question}
 
-{query}
-
-======================
-Answer
-======================
+Answer:
 """
-
         return prompt.strip()

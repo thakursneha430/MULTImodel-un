@@ -1,24 +1,23 @@
-"""
-LLM Wrapper
-"""
+from google import genai
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
 
 class LLM:
-
     def __init__(self):
-        pass
-
-    def generate(
-        self,
-        prompt: str
-    ) -> str:
-        """
-        Placeholder LLM.
-
-        Replace this with an actual model in the next step.
-        """
-
-        return (
-            "LLM integration coming in the next step.\n\n"
-            "Prompt received successfully."
+        self.client = genai.Client(
+            api_key=os.getenv("GEMINI_API_KEY")
         )
+
+        self.model = "gemini-3.5-flash"
+
+        print("Gemini LLM loaded successfully.")
+
+    def generate(self, prompt):
+        response = self.client.models.generate_content(
+            model=self.model,
+            contents=prompt
+        )
+
+        return response.text

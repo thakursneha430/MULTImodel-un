@@ -1,41 +1,35 @@
-"""
-RAG Pipeline
-"""
-
 from src.vectorstore.retriever import Retriever
 from src.rag.prompt_builder import PromptBuilder
 from src.rag.llm import LLM
-from src.rag.response_parser import ResponseParser
 
 
 class RAGPipeline:
 
     def __init__(self):
-
         self.retriever = Retriever()
-
-        self.prompt_builder = PromptBuilder()
-
         self.llm = LLM()
 
-        self.parser = ResponseParser()
+    def ask(self, question: str):
 
-    def ask(
-        self,
-        question: str,
-        top_k: int = 5
-    ):
+        # Retrieve relevant chunks
+        results = self.retriever.retrieve(question)
 
-        retrieved_chunks = self.retriever.retrieve(
-            query=question,
-            top_k=top_k
+        # Build context from retrieved chunks
+        context = "\n\n".join(
+            [result["text"] for result in results]
         )
 
-        prompt = self.prompt_builder.build_prompt(
-            query=question,
-            retrieved_chunks=retrieved_chunks
+        # Build prompt
+        prompt = PromptBuilder.build(
+            context=context,
+            question=question
         )
 
-        response = self.llm.generate(prompt)
+        # Generate answer
+        answer = self.llm.generate(prompt)
 
-        return self.parser.parse(response)
+        return {
+            "question": question,
+            "answer": answer,
+            "sources": results
+        }
