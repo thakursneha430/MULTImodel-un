@@ -1,21 +1,48 @@
+"""
+Prompt Builder
+"""
+
+
 class PromptBuilder:
+    """
+    Builds prompts for the LLM.
+    """
+
     @staticmethod
-    def build(context: str, question: str) -> str:
+    def build(
+        question: str,
+        context: str,
+        history: str = ""
+    ) -> str:
+
         prompt = f"""
-You are an intelligent AI assistant.
+You are a helpful AI assistant.
 
-Answer the question ONLY using the provided context.
-If the answer is not present in the context, say:
-"I could not find the answer in the provided document."
+Use ONLY the provided context to answer.
 
-------------------------
-Context:
+If the answer is not present in the context,
+reply with:
+
+"I couldn't find the answer in the uploaded document."
+
+==========================
+Conversation History
+==========================
+{history}
+
+==========================
+Retrieved Context
+==========================
 {context}
-------------------------
 
-Question:
+==========================
+Question
+==========================
 {question}
 
-Answer:
+==========================
+Answer
+==========================
 """
-        return prompt.strip()
+
+        return prompt
