@@ -21,10 +21,9 @@ class Retriever:
         self.vector_store = ChromaStore()
 
     def retrieve(
-        self,
-        query: str,
-        top_k: int = 5
-    ) -> List[Dict]:
+       self,
+       query: str,
+       top_k: int = 8):
         """
         Retrieve the most relevant chunks.
 

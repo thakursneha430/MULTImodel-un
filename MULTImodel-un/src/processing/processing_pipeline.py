@@ -20,8 +20,8 @@ class ProcessingPipeline:
         self.cleaner = TextCleaner()
 
         self.chunker = TextChunker(
-            chunk_size=500,
-            chunk_overlap=100
+            chunk_size=800,
+            chunk_overlap=200
         )
 
         self.metadata = MetadataEnricher()
