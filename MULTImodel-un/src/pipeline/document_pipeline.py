@@ -66,13 +66,6 @@ class DocumentPipeline:
         # Phase 5 : Store in ChromaDB
         # ---------------------------------
 
-        try:
-            self.vector_store.delete_collection()
-        except Exception:
-            pass
-
-        self.vector_store = ChromaStore()
-
         self.vector_store.add_documents(
             embedded_chunks
         )
